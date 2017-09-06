@@ -5,7 +5,7 @@
 #
 
 
-class interface(object):
+class Interface(object):
 
     def check(self):
         '''
