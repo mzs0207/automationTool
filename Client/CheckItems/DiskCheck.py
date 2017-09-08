@@ -18,7 +18,14 @@ class DiskCheck(Interface):
             device, mountpoint,_,_ = item
             deviceName = str(device).split('/')[-1]
             total, used, free, percent = psutil.disk_usage(mountpoint)
-            read_count,write_count,read_bytes, write_bytes, read_time, write_time = disk_ios[deviceName]
+            disk_io = disk_ios[deviceName]
+            read_count = disk_io.read_count
+
+            write_count = disk_io.write_count
+            read_bytes = disk_io.read_bytes
+            write_bytes= disk_io.write_bytes
+            read_time= disk_io.read_time
+            write_time= disk_io.write_time
             item_dic = {
                 'total': total,
                 'used': used,
