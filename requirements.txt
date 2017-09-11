@@ -1,2 +1,2 @@
 psutil
-Crypto
+Crypto(请使用easy_install 安装)
