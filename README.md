@@ -9,3 +9,10 @@
 
 客户端：采集数据、实现调度任务
 代理服务器：中转数据
+
+
+
+# 参考资料
+实现过程参考以下相关资料，感谢。
+http://blog.csdn.net/taiyang1987912/article/details/44850999
+http://www.cnblogs.com/cmsd/p/3838269.html
