@@ -26,4 +26,19 @@ config['token'] = 'hahaha'
 # 实现加密混淆的字符串，长度应该是16或32或64
 config['CryptoKey'] = 'jikjhg457hgdetyh'
 
+# 配置mysql ip
+config['mysql_ip'] = 'localhost'
+
+# 配置mysql 端口
+config['mysql_port'] = 3306
+
+# 配置数据库名
+config['database'] = 'autoTool'
+
+# 配置mysql 用户
+config['mysql_user'] = 'admin'
+
+# 配置mysql 密码
+config['mysql_passwd'] = 'admin'
+
 

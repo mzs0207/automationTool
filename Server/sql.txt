@@ -1,0 +1,49 @@
+建表语句
+
+create table cpu(
+host varchar(60),
+rtime datetime,
+iowait float,
+user float,
+system float,
+idle float,
+oneLoad float,
+fiveLoad float,
+fifteenLoad float,
+primary key(host,rtime)
+) comment='cpu 信息';
+
+
+create table disk(
+host varchar(60),
+rtime datetime,
+total bigint,
+used bigint,
+free bigint,
+percent float,
+read_count int,
+write_count int,
+read_bytes int,
+write_bytes int,
+read_time float,
+write_time float,
+primary key(host,rtime)
+) comment = '磁盘信息';
+
+create table Memory(
+host varchar(60),
+rtime datetime,
+free bigint,
+used bigint,
+available bigint,
+primary key(host,rtime)
+);
+
+create table Network(
+host varchar(60),
+rtime datetime,
+nic varchar(60),
+sent float,
+recv float,
+primary key(host,rtime,nic)
+);

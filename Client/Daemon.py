@@ -5,6 +5,8 @@
 
 import sys, os, time, atexit, string
 from signal import SIGTERM
+import Scheduler
+import datetime
 
 
 class Daemon:
@@ -109,16 +111,18 @@ class Daemon:
 
     def _run(self):
         """ run your fun"""
+        scheduler = Scheduler()
+        scheduler.start()
         while True:
-            # fp=open('/tmp/result','a+')
-            # fp.write('Hello World\n')
-            sys.stdout.write('%s:hello world\n' % (time.ctime(),))
-            sys.stdout.flush()
-            time.sleep(2)
+            fp=open('/tmp/result','a+')
+            fp.write('Hello World\n')
+            #print 'get Task',datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            time.sleep(61)
 
 
 if __name__ == '__main__':
     daemon = Daemon('/tmp/watch_process.pid', stdout='/tmp/watch_stdout.log')
+    sys.argv.append('start')
     if len(sys.argv) == 2:
         if 'start' == sys.argv[1]:
             daemon.start()
