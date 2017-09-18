@@ -111,18 +111,17 @@ class Daemon:
 
     def _run(self):
         """ run your fun"""
-        scheduler = Scheduler()
+        scheduler = Scheduler.Scheduler()
         scheduler.start()
         while True:
-            fp=open('/tmp/result','a+')
-            fp.write('Hello World\n')
+            print datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             #print 'get Task',datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             time.sleep(61)
 
 
 if __name__ == '__main__':
-    daemon = Daemon('/tmp/watch_process.pid', stdout='/tmp/watch_stdout.log')
-    sys.argv.append('start')
+    daemon = Daemon('/tmp/watch_process.pid', stdout='/dev/stdout', stderr='/dev/stderr')
+    # sys.argv.append('start')
     if len(sys.argv) == 2:
         if 'start' == sys.argv[1]:
             daemon.start()
