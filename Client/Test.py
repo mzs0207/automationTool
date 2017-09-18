@@ -9,6 +9,8 @@ from CheckItems.NetworkConnectionsCheck import NetworkConnections
 from Post import post
 import os
 import time
+from Scheduler import *
+import datetime
 
 
 def tick(checkItem):
@@ -18,6 +20,8 @@ def tick(checkItem):
 
 
 if __name__ == '__main__':
+
+    '''
     scheduler = BackgroundScheduler()
     scheduler.add_job(tick, args=(CPUCheck(),), trigger='interval', seconds=30)
     scheduler.add_job(lambda:tick(MemoryCheck()), 'interval', seconds= 60)
@@ -31,3 +35,9 @@ if __name__ == '__main__':
     except Exception,e:
         print e
         scheduler.shutdown()
+    '''
+    scheduler = Scheduler()
+    scheduler.start()
+    while 1:
+        print datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        time.sleep(30)
