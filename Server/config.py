@@ -41,4 +41,12 @@ config['mysql_user'] = 'admin'
 # 配置mysql 密码
 config['mysql_passwd'] = 'admin'
 
+# 配置微信APPID
+config['WX_APPID'] = ''
+
+#配置微信SECRET
+config['WX_SECRET'] = ''
+
+#配置微信消息id
+config['WX_TEMPLATE_ID'] = ''
 
