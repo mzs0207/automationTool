@@ -5,7 +5,7 @@ import traceback
 
 from flask import Flask, request, jsonify
 
-import Server.CheckDataMethod
+import CheckDataMethod
 from config import config
 import MySQLHelp
 
@@ -26,7 +26,7 @@ def check_data():
     try:
         request_str = request.get_data()
         request_json = json.loads(request_str)
-        Server.CheckDataMethod.process(request_json, db)
+        CheckDataMethod.process(request_json, db)
         response_json['result'] = "success"
     except Exception, e:
         traceback.print_exc()

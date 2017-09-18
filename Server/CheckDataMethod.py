@@ -7,6 +7,8 @@
 #   三  判断是否到达报警阈值并发送报警
 #
 #
+import sys
+sys.path.append('..')
 from config import config
 from Client import AES
 import traceback
@@ -45,8 +47,10 @@ def save_data(data, db):
 
     elif data['item'] == 'network':
         for item in data:
-            if item not in ['item', 'hostname']:
+            if item not in ['item', 'hostname', 'token']:
                 d = data[item]
+                print 'd:',d
+                print 'item:',item
                 db.save_Network(data['hostname'], now, item, d['sent'], d['recv'])
 
 
