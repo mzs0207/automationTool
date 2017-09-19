@@ -48,5 +48,13 @@ config['WX_APPID'] = ''
 config['WX_SECRET'] = ''
 
 #配置微信消息id
-config['WX_TEMPLATE_ID'] = ''
+config['WX_TEMPLATE_ID'] = 'GUZtolJh81Ic-hTL9uv_ELH_mpL04VEsciAzGWSOLm4'
+
+# 当配置微信推送token 来自数据库的时候
+config['WX_Token_Source'] = 'db'
+config['WX_MySQL_Host'] = ''
+config['WX_MySQL_Port'] = ''
+config['WX_MySQL_User'] = ''
+config['WX_MySQL_Passwd'] = ''
+config['WX_SQL'] = "select access_token,expire_date from stock_app.t_weixin_access_token where appid='wxe031013412e9afdb';"
 

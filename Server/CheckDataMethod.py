@@ -14,6 +14,8 @@ from Client import AES
 import traceback
 import json
 import datetime
+from WeiXinPush import send_weixin_msg
+
 
 # 解密并验证token
 def decrypt_verification_data(ori_data):
@@ -56,7 +58,25 @@ def save_data(data, db):
 
 # 判断是否达到阈值，触发报警
 def judge(data):
-    pass
+    now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    ## 判断cpu负载
+    if data["item"] == "cpu":
+        total = data['iowait'] + data['user'] + data['system'] + data['idle']
+        v = float(data['iowait']) / total
+        if v > 0.3:
+            send_weixin_msg(
+                "%s iowait %s"%(data["hostname"],v),
+                "%s one:%s,five:%s" %(now,data["oneLoad"], data["fiveLoad"]),
+                'cpu count:%s ' %(data['count'])
+            )
+        load = float(data['oneLoad'])/data['count']
+        if load >0.8:
+            send_weixin_msg(
+                "%s 负载高 %s" % (data["hostname"], load),
+                "%s one:%s,five:%s" % (now, data["oneLoad"], data["fiveLoad"]),
+                'cpu count:%s ' % (data['count'])
+            )
+
 
 
 def process(json_data, db):
