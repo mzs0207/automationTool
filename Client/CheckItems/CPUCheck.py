@@ -15,6 +15,7 @@ class CPUCheck(Interface):
     def check(self):
         cpuInfo = psutil.cpu_times()
         oneLoad,fiveLoad, fifteenLoad = os.getloadavg()
+        cpu_count = psutil.cpu_count()
         if hasattr(cpuInfo, 'iowait'):
             return {
             "item": "cpu",
@@ -24,7 +25,8 @@ class CPUCheck(Interface):
             "idle": cpuInfo.idle,
             "oneLoad":oneLoad,
             "fiveLoad":fiveLoad,
-            "fifteenLoad":fifteenLoad
+            "fifteenLoad":fifteenLoad,
+            "count":cpu_count
             }
         else:
             return {
@@ -35,5 +37,6 @@ class CPUCheck(Interface):
                 "idle": cpuInfo.idle,
                 "oneLoad": oneLoad,
                 "fiveLoad": fiveLoad,
-                "fifteenLoad": fifteenLoad
+                "fifteenLoad": fifteenLoad,
+                "count": cpu_count
             }
