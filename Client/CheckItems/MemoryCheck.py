@@ -14,5 +14,7 @@ class MemoryCheck(Interface):
             'item': 'memory',
             'free': m.free,
             'used': m.used,
-            'available': m.available
+            'available': m.available,
+            "percent": m.percent,
+            "total": m.total
         }
