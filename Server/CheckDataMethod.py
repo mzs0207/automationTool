@@ -76,10 +76,26 @@ def judge(data):
                 "%s one:%s,five:%s" % (now, data["oneLoad"], data["fiveLoad"]),
                 'cpu count:%s ' % (data['count'])
             )
-
+    ## 判断磁盘容量
+    if data["item"] == "disk":
+        for item in data:
+            if item not in ['item', 'hostname', 'token']:
+                if data[item]['percent'] > 90:
+                    send_weixin_msg(
+                        "%s %s 目录快满了"%(data['hostname'], item),
+                        "目录还剩下%s" %(100 - data[item]['percent']),
+                        "请及时处理"
+                    )
+    ## 可用内存报警
+    if data["item"] == "memory":
+        if data["percent"] >95:
+            send_weixin_msg("%s 内存已经达到%s,内存不足" %(data["hostname"], data["percent"]),
+                            "总内存是%s M ,内存不足会引起系统崩溃" %(data["total"]/1024.0/1024),
+                            "请及时处理")
 
 
 def process(json_data, db):
     flag, data = decrypt_verification_data(json_data)
     if flag:
         save_data(data, db)
+        judge(data)
