@@ -6,6 +6,9 @@
 
 config = {}
 
+# 是否开启使用https
+config['https'] = False
+
 ##服务监听端口
 config['port'] = 15789
 
