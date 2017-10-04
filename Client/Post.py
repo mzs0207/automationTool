@@ -20,8 +20,9 @@ def post(data, url):
         'data': encrypt_str,
         'id': random.randint(1, 10000)
     }
-    context = ssl._create_unverified_context()
+    #context = ssl._create_unverified_context()
     request = urllib2.Request(url=config['url']+url, data=json.dumps(post_data))
-    response = urllib2.urlopen(request, context = context)
+    #response = urllib2.urlopen(request, context = context)
+    response = urllib2.urlopen(request)
     result = response.read()
     return result
